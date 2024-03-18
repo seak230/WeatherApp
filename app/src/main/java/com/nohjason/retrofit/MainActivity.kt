@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -15,6 +16,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -51,15 +54,20 @@ fun Greeting() {
         val viewModel: ViewModel = viewModel()
         viewModel.marsUiState?.get(0)?.let { Text(
             text = it.baseDate,
+            fontSize = 40.sp,
+            modifier = Modifier.padding(15.dp),
+            fontWeight = FontWeight.Bold
         ) }
         LazyColumn(
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             viewModel.marsUiState?.let {
                 items(count = it.size) { index ->
                     val test = viewModel.marsUiState?.get(index)
                     if (test != null) {
-                        Column(modifier = Modifier.padding(15.dp)) {
+                        Column(
+                            modifier = Modifier.padding(15.dp)
+                        ) {
                             var value = test.obsrValue
 
                             when (test.category) {

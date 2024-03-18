@@ -37,7 +37,7 @@ interface MarsApiService {
     suspend fun getData(
         @Query("nx") nx: Int = 55,
         @Query("ny") ny: Int = 127,
-        @Query("base_time") time: String = "0600",
+        @Query("base_time") time: String,
         @Query("base_date") date: String, // <- 시간에 따라 자동으로 변환해야함
         @Query("dataType") dataType: String = "JSON",
         @Query("numOfRows") number: Int = 1000,
